@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29009.5
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeroomRedux", "HomeroomRedux.csproj", "{95C74B3D-C20E-4806-BD6E-73BB3CD81F26}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeroomRedux.Tests", "..\HomeroomRedux.Tests\HomeroomRedux.Tests.csproj", "{60503349-D21D-471F-9D8F-74E2D12EC1DF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{95C74B3D-C20E-4806-BD6E-73BB3CD81F26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95C74B3D-C20E-4806-BD6E-73BB3CD81F26}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95C74B3D-C20E-4806-BD6E-73BB3CD81F26}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95C74B3D-C20E-4806-BD6E-73BB3CD81F26}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60503349-D21D-471F-9D8F-74E2D12EC1DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60503349-D21D-471F-9D8F-74E2D12EC1DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60503349-D21D-471F-9D8F-74E2D12EC1DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60503349-D21D-471F-9D8F-74E2D12EC1DF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {162DD641-E8FD-4B84-BEF0-C405A653451F}
+	EndGlobalSection
+EndGlobal
