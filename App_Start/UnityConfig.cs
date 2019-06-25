@@ -61,7 +61,7 @@ namespace HomeroomRedux
                 .RegisterType<ICourse, EFCourseService>()
                 .RegisterType<IAssignment, EFAssignmentService>()
                 .RegisterType<INotes, EFNotesService>()
-                .RegisterType<IUpload, EFUploadFileService>()
+                .RegisterType<IUpload, EFUploadService>()
                 .RegisterType<ISubmissions, EFSubmissionService>()
                 .RegisterType<IInstructor, EFInstructorService>();
 

@@ -1,4 +1,5 @@
 ﻿using HomeroomRedux.Models;
+using HomeroomRedux.Services.Interfaces;
 using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;

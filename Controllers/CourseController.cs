@@ -1,5 +1,8 @@
 ﻿using HomeroomRedux.Models;
+using HomeroomRedux.Services.Interfaces;
+using HomeroomRedux.ViewModels.Courses;
 using Microsoft.AspNet.Identity;
+using System.Data.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;

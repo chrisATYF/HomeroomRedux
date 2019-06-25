@@ -1,7 +1,10 @@
 ﻿using HomeroomRedux.Models;
+using HomeroomRedux.Services.Interfaces;
+using HomeroomRedux.ViewModels.Uploads;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data.Entity;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -68,7 +71,7 @@ namespace HomeroomRedux.Controllers
 
             viewModel.File.SaveAs(Path.Combine(path, viewModel.File.FileName));
             var urlBase = ConfigurationManager.AppSettings["SiteUrlBase"];
-            var fileUpload = new SubmissionFiles
+            var fileUpload = new SubmissionFile
             {
                 FileName = viewModel.File.FileName,
                 ContentType = viewModel.File.ContentType,
@@ -80,7 +83,7 @@ namespace HomeroomRedux.Controllers
             };
 
             var currentSubmission = await _context.Submissions.FirstOrDefaultAsync(i => i.Id == fileUpload.SubmissionId);
-            currentSubmission.SubmissionFiles = new List<SubmissionFiles>();
+            currentSubmission.SubmissionFiles = new List<SubmissionFile>();
             currentSubmission.SubmissionFiles.Add(fileUpload);
 
             await _uploadService.AddAsync(fileUpload);

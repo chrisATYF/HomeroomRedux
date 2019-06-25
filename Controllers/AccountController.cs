@@ -17,9 +17,13 @@ namespace HomeroomRedux.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        protected readonly ApplicationDbContext _context;
 
-        public AccountController()
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager, ApplicationDbContext context)
         {
+            _userManager = userManager;
+            _signInManager = signInManager;
+            _context = context;
         }
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
@@ -151,10 +155,41 @@ namespace HomeroomRedux.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser
+                {
+                    FirstName = model.FirstName,
+                    LastName = model.LastName,
+                    UserName = model.Email,
+                    Email = model.Email,
+                    IsInstructor = model.IsInstructor
+                };
+
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    if (user.IsInstructor)
+                    {
+                        _ = await _userManager.AddToRoleAsync(user.Id, Constants.RoleInstructor);
+                        var newInstructor = new Instructor()
+                        {
+                            AspNetUserId = user.Id,
+                            Name = $"{user.FirstName} {user.LastName}"
+                        };
+                        _context.Instructors.Add(newInstructor);
+                        _context.SaveChanges();
+                    }
+                    else
+                    {
+                        _ = await _userManager.AddToRoleAsync(user.Id, Constants.RoleStudent);
+                        var newStudent = new Student()
+                        {
+                            AspNetUserId = user.Id,
+                            Name = $"{user.FirstName} {user.LastName}"
+                        };
+                        _context.Students.Add(newStudent);
+                        _context.SaveChanges();
+                    }
+
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
