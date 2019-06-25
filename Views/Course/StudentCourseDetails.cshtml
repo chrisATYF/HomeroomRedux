@@ -1,0 +1,175 @@
+﻿@model HomeroomRedux.Models.Course
+@using Microsoft.AspNet.Identity;
+@using Newtonsoft.Json
+
+@{
+    ViewBag.Title = "Student Details";
+}
+
+<div class="container">
+    <div class="container-fluid">
+        @if (Model.Students.Any(a => a.AspNetUserId == User.Identity.GetUserId())
+    && User.IsInRole(Homeroom.Web.Constants.RoleStudent))
+        {
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <h3>@Model.Name</h3>
+                </div>
+            </div>
+            <div class="row mt-4 mb-4">
+                <div class="col-md-12 text-center">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-modal" id="courseCard">Message</button>
+                </div>
+                <div class="offset-8"></div>
+            </div>
+            <div class="modal fade bd-modal" tabindex="-1" role="dialog" aria-labelledby="MessageModal" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <form action="@Url.RouteUrl("MessagePost", new { id = Model.Id })" class="form-group text-center" method="post">
+                                    @Html.AntiForgeryToken()
+                                    <textarea class="form-control" id="chatBoxNonResize" name="newMessage"></textarea>
+                                    <button class="btn btn-primary mt-3 mb-3">Submit</button>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 text-center">
+                                <ul class="list-unstyled" id="chatItems">
+                                    @foreach (var discussion in Model.Discussions.OrderByDescending(d => d.CreateDate))
+                                    {
+                                        <li class="media pt-2">
+                                            <div class="media-body">
+                                                <h5 class="mt-0 mb-1">@discussion.Student.Name</h5>
+                                                @discussion.Message
+                                                <small class="d-block">@discussion.CreateDateHumanized</small>
+                                                <hr />
+                                            </div>
+                                        </li>
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="row">
+                <div class="col-lg-12 text-center pt-5">
+                    <h2 id="courseDetailHeading">@Model.Name</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 mt-5">
+                    <div class="jumbotron bg-white text-center" id="jumbo">
+                        <h5>About the Instructor</h5>
+                        <hr />
+                        <p>
+                            @Model.Instructor.AboutInstructor
+                        </p>
+                        <div class="col-md-12">
+                            @if (User.IsInRole(Homeroom.Web.Constants.RoleStudent))
+                            {
+                                <form action="@Url.RouteUrl("EnrollPost", new { id = Model.Id })" method="post">
+                                    @Html.AntiForgeryToken()
+                                    <button class="btn btn-primary text-center">Enroll</button>
+                                </form>
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="card text-center mt-5" id="courseCard">
+                        <div class="card-header">
+                            Course Details
+                        </div>
+                        <div class="card-body">
+                            <p>Instructor: @Model.Instructor.Name</p>
+                            <hr />
+                            <p class="card-subtitle">About This Course</p>
+                            <hr />
+                            <p class="card-text">
+                                @Model.AboutCourse
+                            </p>
+                            <hr />
+                            <h5>What you'll learn</h5>
+                            <hr />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        @if (Model.Students.Any(s => s.AspNetUserId == User.Identity.GetUserId()))
+        {
+            <div class="row">
+                <div class="col-md-4 text-center rounded" id="courseCard">
+                    <div class="row float-left">
+                        <div class="col-sm-12">
+                            <button class="btn mt-2 btn-sm btn-primary" disabled>&#10004 Enrolled</button>
+                        </div>
+                    </div>
+                    <p class="mt-5"><a href="@Url.RouteUrl("NotesIndex")">Saved notes</a></p>
+                    <p><a href="@Url.RouteUrl("AddNote", new { id = Model.Id })">Take notes</a></p>
+                </div>
+                <div class="col-md-4">
+                    <div class="card text-center" id="courseCard">
+                        <div class="card-header">
+                            <p class="lead">Course Details</p>
+                        </div>
+                        <div class="card-body">
+                            <p>Instructor: @Model.Instructor.Name</p>
+                            <hr />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 text-center">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <ul class="list-group" id="courseCard">
+                                @foreach (var assignment in Model.Assignments)
+                                {
+                                    <li class="list-group-item rounded">
+                                        <p>
+                                            Assignment: @assignment.Name
+                                        </p>
+                                        <p>
+                                            Due: @assignment.DueDateHumanized
+                                        </p>
+                                        <p>
+                                            Assigned: @assignment.AssignDateHumanized
+                                        </p>
+                                        <a href="@Url.RouteUrl("SubmissionIndex", new { assignmentId = assignment.Id })" class="btn btn-primary">Submission</a>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-deck mt-3 text-center mb-2">
+                @foreach (var assignment in Model.Assignments)
+                {
+                    foreach (var submission in assignment.Submissions)
+                    {
+                        if (submission.IsGraded)
+                        {
+                            <div class="card mt-3" id="courseIndexCenter" style="min-width: 15rem; max-width: 15rem;">
+                                <div class="card-body text-center">
+                                    <h4 class="card-title">@assignment.Name</h4>
+                                    <p class="card-text">@assignment.Description</p>
+                                    <hr />
+                                    <p class="card-subtitle">Grade: @submission.Grade, @submission.LetterGrade</p>
+                                    <p class="card-text">@submission.GradedDateHumanized</p>
+                                </div>
+                            </div>
+                        }
+                    }
+                }
+            </div>
+        }
+
+    </div>
+</div>

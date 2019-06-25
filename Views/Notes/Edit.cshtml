@@ -1,0 +1,36 @@
+﻿@model HomeroomRedux.Models.Note
+@{
+    ViewBag.Title = "Edit";
+}
+
+<div class="container">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <form action="@Url.RouteUrl("EditNotePost")" method="post">
+                    @Html.AntiForgeryToken()
+                    @Html.HiddenFor(c => c.CourseId)
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            @Html.LabelFor(n => n.Title)
+                            @Html.TextBoxFor(n => n.Title, new { @class = "form-control", @id = "NoteTitleSize" })
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12 text-center mt-4">
+                            @Html.TextAreaFor(n => n.NoteSummary, new { @id = "NoteNonResize" })
+                        </div>
+                    </div>
+                    <div class="row mt-4">
+                        <div class="offset-4"></div>
+                        <div class="col-md-4 text-center">
+                            <button class="btn btn-primary" type="submit">Submit</button>
+                        </div>
+                        <div class="offset-4"></div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

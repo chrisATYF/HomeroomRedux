@@ -1,0 +1,60 @@
+﻿@model HomeroomRedux.Models.Assignment
+@{
+    ViewBag.Title = "Edit";
+}
+
+<div class="container">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12 mt-4 text-center">
+                <h4 class="lead">@Model.Name</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <form action="@Url.RouteUrl("EditAssignmentPost")" method="post">
+                    @Html.AntiForgeryToken()
+                    @Html.HiddenFor(i => i.Id)
+                    <div class="row text-center mt-3">
+                        <div class="col-md-6">
+                            @Html.LabelFor(n => n.Name)
+                            @Html.TextBoxFor(n => n.Name, new { @class = "form-control" })
+                        </div>
+                        <div class="col-md-6">
+                            @Html.LabelFor(d => d.Description)
+                            @Html.TextBoxFor(d => d.Description, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="row text-center mt-3">
+                        <div class="col-md-6">
+                            @Html.LabelFor(d => d.DueDate)
+                            @Html.TextBoxFor(d => d.DueDate, new { @class = "form-control", @type = "date" })
+                        </div>
+                        <div class="col-md-6">
+                            @Html.LabelFor(t => t.AssignmentType)
+                            <select class="form-control" id="AssignmentType" name="AssignmentType">
+                                <option value="1">Test</option>
+                                <option value="2">Quiz</option>
+                                <option value="3">Homework</option>
+                                <option value="4">Classwork</option>
+                                <option value="5">Essay</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row text-center mt-3">
+                        <div class="col-md-12">
+                            @Html.LabelFor(t => t.TotalPointsAvailable)
+                            @Html.TextBoxFor(t => t.TotalPointsAvailable, new { @class = "form-control", @id = "NoteDropdownSize" })
+                        </div>
+                    </div>
+                    <div class="row mt-4">
+                        <div class="col-md-12 text-center">
+                            <button class="btn btn-primary" type="submit">Submit</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

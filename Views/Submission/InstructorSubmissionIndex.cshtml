@@ -1,0 +1,54 @@
+﻿@model IEnumerable<HomeroomRedux.Models.Submission>
+@{
+    ViewBag.Title = "InstructorSubmissionIndex";
+}
+
+<div class="container">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h2>Student Submissions</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 text-center mt-2">
+                @foreach (var file in Model)
+                {
+                    <h5>Assignment: @file.Assignment.Name</h5>
+                    break;
+                }
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <ul class="list-group">
+                    @if (Model.Any(s => s.IsSubmitted))
+                    {
+                        foreach (var submission in Model)
+                        {
+                            if (!submission.IsGraded)
+                            {
+                                foreach (var file in submission.SubmissionFiles)
+                                {
+                                    <li class="list-group-item">
+                                        <p class="lead"><a href="@file.ExternalUrl">@file.FileName</a></p>
+                                        <p>@file.Submission.Student.Name</p>
+                                        <small>@file.Submission.SubmissionDateHumanized</small>
+                                        <a href="@Url.RouteUrl("InstructorSubmissionGrade", new { submissionId = submission.Id })" class="btn btn-primary btn-sm">Grade</a>
+                                        <hr />
+                                    </li>
+
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        <p class="lead">Your students haven't submitted anything yet</p>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+

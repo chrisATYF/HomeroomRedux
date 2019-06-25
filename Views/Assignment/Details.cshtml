@@ -1,0 +1,21 @@
+﻿@model HomeroomRedux.Models.Assignment
+@using Microsoft.AspNet.Identity;
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="container">
+    <div class="container-fluid">
+        <h2>@Model.Name</h2>
+        <p>@Model.Description</p>
+        @if (!Model.Submissions.Any(i => i.Student.AspNetUserId == User.Identity.GetUserId()) && User.IsInRole(Homeroom.Web.Constants.RoleStudent))
+        {
+            <div class="row">
+                <div class="col-md-12">
+                    <a href="@Url.RouteUrl("UploadFile", new { id = Model.Id })" class="btn btn-primary">Make a submission</a>
+                </div>
+            </div>
+        }
+    </div>
+</div>

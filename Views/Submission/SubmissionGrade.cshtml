@@ -1,0 +1,48 @@
+﻿@model HomeroomRedux.Models.Submission
+@{
+    ViewBag.Title = "SubmissionGrade";
+}
+
+<div class="container">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h4>@Model.Student.Name</h4>
+                <ul class="list-group">
+                    @foreach (var file in Model.SubmissionFiles)
+                    {
+                        <li class="list-group-item">
+                            <p class="lead"><a href="@file.ExternalUrl">@file.FileName</a></p>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <form action="@Url.RouteUrl("InstructorSubmissionGradePost")" method="post">
+                    @Html.AntiForgeryToken()
+                    @Html.HiddenFor(i => i.Id)
+                    <div class="row mt-4">
+                        <div class="offset-4"></div>
+                        <div class="col-md-2 text-center">
+                            @Html.LabelFor(g => g.Grade)
+                            @Html.TextBoxFor(g => g.Grade, new { @class = "form-control" })
+                        </div>
+                        <div class="col-md-2 text-center">
+                            @Html.LabelFor(l => l.LetterGrade)
+                            @Html.TextBoxFor(l => l.LetterGrade, new { @class = "form-control" })
+                        </div>
+                        <div class="offset-4"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <button class="btn btn-primary mt-4" type="submit">Grade</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

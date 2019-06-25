@@ -1,0 +1,44 @@
+﻿@model HomeroomRedux.Models.Instructor
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="container">
+    <div class="container-fluid">
+        @if (!Model.Courses.Any())
+        {
+            <p class="text-muted">It doesn't look like you have any courses, <a href="@Url.RouteUrl("CourseCreate")">create one now</a></p>
+        }
+        else
+        {
+            <div class="row">
+                <div class="col-md-12">
+                    <a href="@Url.RouteUrl("CourseCreate")" class="btn btn-primary mb-2" id="courseCard">Create a course</a>
+                    <a href="@Url.RouteUrl("AboutInstructorGet", new { instructorId = Model.Id })" class="btn btn-success mb-2" id="courseCard">Edit about you</a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+
+                </div>
+            </div>
+            <div class="card-deck">
+                @foreach (var course in Model.Courses)
+                {
+                    <div class="card mt-3 anim-card" id="courseCard" style="max-width: 15rem; min-width: 15rem;">
+                        <div class="card-body text-center">
+                            <a href="@Url.RouteUrl("InstructorDetails", new { id = course.Id })"><h4 class="card-title">@Html.DisplayFor(modelItem => course.Name)</h4></a>
+                            <p class="card-subtitle">Instructor: @Html.DisplayFor(modelItem => course.Instructor.Name)</p>
+                            <hr />
+                            <p class="card-text">@Html.DisplayFor(modelItem => course.Description)</p>
+                            <a class="btn btn-primary" href="@Url.RouteUrl("CourseEdit", new { id = course.Id })" id="courseCard">Edit</a>
+                            <a class="btn btn-danger" href="@Url.RouteUrl("CourseDelete", new { id = course.Id })" id="courseCard">Delete</a>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+    </div>
+</div>
+

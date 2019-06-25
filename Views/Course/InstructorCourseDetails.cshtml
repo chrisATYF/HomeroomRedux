@@ -1,0 +1,68 @@
+﻿@model HomeroomRedux.Models.Course
+@using Microsoft.AspNet.Identity;
+@using Newtonsoft.Json
+
+@{
+    ViewBag.Title = "Instructor Details";
+}
+
+<div class="container">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12 text-center pt-5">
+                <h2 id="courseDetailHeading">@Model.Name</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 mt-5">
+                <div class="jumbotron bg-white text-center" id="jumbo">
+                    <h5 class="lead">About the Instructor</h5>
+                    <hr />
+                    <p>@Model.Instructor.AboutInstructor</p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card text-center mt-5" id="courseCard">
+                    <div class="card-header">
+                        <p class="lead">Course Details</p>
+                        <p><a href="@Url.RouteUrl("CourseEdit", new { id = Model.Id })">Edit Course</a></p>
+                    </div>
+                    <div class="card-body">
+                        <p>Instructor: @Model.Instructor.Name</p>
+                        <hr />
+                        <p class="card-subtitle">About This Course</p>
+                        <hr />
+                        <p class="card-text">@Model.AboutCourse</p>
+                        <hr />
+                        <h5>What you'll learn</h5>
+                        <p class="card-text">@Model.WhatYouLearn</p>
+                        <hr />
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mt-5">
+                <div class="jumbotron bg-white text-center" id="jumbo">
+                    <h5 class="lead">Assignments</h5>
+                    <hr />
+                    @foreach (var assignment in Model.Assignments)
+                    {
+                        <a href="@Url.RouteUrl("InstructorSubIndex", new { assignmentId = assignment.Id })" class="btn-link">@assignment.Name</a>
+                        <p>@assignment.Description</p>
+                        <small class="lead">Total Points available: @assignment.TotalPointsAvailable</small>
+                        <div class="row">
+                            <div class="col-md-12 mt-2">
+                                <p><a href="@Url.RouteUrl("EditAssignment", new { id = assignment.Id })" class="btn btn-success" id="courseCard">Edit Assignment</a></p>
+                            </div>
+                        </div>
+                    }
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p><a href="@Url.RouteUrl("AddAssignment", new { courseId = Model.Id })" class="btn btn-primary btn-lg" id="courseCard">Add Assignment</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

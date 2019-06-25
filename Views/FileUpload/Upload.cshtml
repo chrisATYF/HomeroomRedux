@@ -1,0 +1,20 @@
+﻿@model HomeroomRedux.ViewModels.Uploads.UploadCourseViewModel
+@{
+    ViewBag.Title = "Upload";
+}
+
+<div class="container">
+    <div class="container-fluid">
+        <form action="@Url.RouteUrl("UploadFilePost")" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                @Html.HiddenFor(i => i.SubmissionId)
+                @Html.AntiForgeryToken()
+                @Html.LabelFor(a => a.File)
+                @Html.TextBoxFor(a => a.File, new { @class = "form-control", type = "file", accept = "*" })
+                @Html.ValidationMessageFor(a => a.File)
+            </div>
+            <button class="btn btn-primary" type="submit">Save</button>
+        </form>
+    </div>
+</div>
+

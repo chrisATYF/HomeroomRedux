@@ -1,0 +1,31 @@
+﻿@model HomeroomRedux.Models.Note
+@using Markdig
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="container">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12 text-center mt-4">
+                <h4 class="lead">@Model.Title</h4>
+                <hr />
+                <p>@Html.Raw(@Markdown.ToHtml(Model.NoteSummary))</p>
+            </div>
+
+
+        </div>
+        <div class="row text-center mt-3">
+            <div class="col-md-4">
+                <a href="@Url.RouteUrl("AddNote", new { id = Model.Id })" class="btn btn-primary">Take new notes</a>
+            </div>
+            <div class="col-md-4">
+                <a href="@Url.RouteUrl("EditNote", new { id = Model.Id })" class="btn btn-success">Edit notes</a>
+            </div>
+            <div class="col-md-4">
+                <a href="@Url.RouteUrl("DeleteNote", new { id = Model.Id })" class="btn btn-danger">Delete notes</a>
+            </div>
+        </div>
+    </div>
+</div>
+

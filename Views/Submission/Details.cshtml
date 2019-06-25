@@ -1,0 +1,33 @@
+﻿@model HomeroomRedux.Models.Submission
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="container">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                @if (!Model.SubmissionFiles.Any())
+                {
+                    <p class="lead">Looks like you haven't uploaded any files yet, you can do that <a href="@Url.RouteUrl("UploadFile", new { submissionId = Model.Id })">here</a></p>
+                }
+                else
+                {
+                    foreach (var file in Model.SubmissionFiles)
+                    {
+                        <p><a href="@file.ExternalUrl">@file.FileName</a></p>
+                    }
+                    <div class="row">
+                        <div class="col-md-6">
+                            <a href="@Url.RouteUrl("UploadFile", new { submissionId = Model.Id })" class="btn btn-primary">Add a file</a>
+                        </div>
+                        <div class="col-md-6">
+                            <a href="@Url.RouteUrl("FileSubmit", new { submissionId = Model.Id })" class="btn btn-success">Submit Work</a>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+

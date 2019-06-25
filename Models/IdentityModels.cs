@@ -16,14 +16,29 @@ namespace HomeroomRedux.Models
             // Add custom user claims here
             return userIdentity;
         }
+
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public bool IsInstructor { get; set; }
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("HomeroomReduxDb", throwIfV1Schema: false)
         {
+            Configuration.LazyLoadingEnabled = false;
         }
+
+        public DbSet<Instructor> Instructors { get; set; }
+        public DbSet<Student> Students { get; set; }
+        public DbSet<Course> Courses { get; set; }
+        public DbSet<Discussion> Discussions { get; set; }
+        public DbSet<Assignment> Assignments { get; set; }
+        public DbSet<SubmissionFile> SubmissionFiles { get; set; }
+        public DbSet<CourseFile> CourseFiles { get; set; }
+        public DbSet<Submission> Submissions { get; set; }
+        public DbSet<Note> Notes { get; set; }
 
         public static ApplicationDbContext Create()
         {

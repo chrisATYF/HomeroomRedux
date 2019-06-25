@@ -1,0 +1,63 @@
+﻿@model HomeroomRedux.Models.Course
+@{
+    ViewBag.Title = "CourseChat";
+}
+
+<div class="container">
+    <div class="container-fluid">
+        <div class="modal fade bd-modal" tabindex="-1" role="dialog" aria-labelledby="MessageModal" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="row">
+                        <div class="col-md-12 mt-3">
+                            <form action="@Url.RouteUrl("MessagePost", new { id = Model.Id })" class="form-group text-center" method="post">
+                                @Html.AntiForgeryToken()
+                                <textarea class="form-control" id="chatBoxNonResize" name="newMessage"></textarea>
+                                <button class="btn btn-primary mt-3 mb-3">Submit</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <ul class="list-unstyled" id="chatItemsModal">
+                                @foreach (var discussion in Model.Discussions.OrderByDescending(d => d.CreateDate))
+                                {
+                                    <li class="media pt-2">
+                                        <div class="media-body">
+                                            <h5 class="mt-0 mb-1">@discussion.Student.Name</h5>
+                                            @discussion.Message
+                                            <small class="d-block">@discussion.CreateDateHumanized</small>
+                                            <hr />
+                                        </div>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <ul class="list-unstyled" id="chatItems">
+                    @foreach (var discussion in Model.Discussions.OrderByDescending(d => d.CreateDate))
+                    {
+                        <li class="media pt-2">
+                            <div class="media-body">
+                                <h5 class="mt-0 mb-1">@discussion.Student.Name</h5>
+                                @discussion.Message
+                                <small class="d-block">@discussion.CreateDateHumanized</small>
+                                <hr />
+                            </div>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-12 text-center mt-2 mb-2">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-modal">Send Message</button>
+        </div>
+    </div>
+</div>
+
+

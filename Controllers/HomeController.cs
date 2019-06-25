@@ -6,23 +6,22 @@ using System.Web.Mvc;
 
 namespace HomeroomRedux.Controllers
 {
+    [RoutePrefix("Home")]
+    [AllowAnonymous]
     public class HomeController : Controller
     {
+        [Route("", Name = "IndexPage")]
         public ActionResult Index()
         {
-            return View();
-        }
+            if (User.Identity.IsAuthenticated)
+            {
+                if (User.IsInRole(Constants.RoleInstructor))
+                {
+                    return RedirectToRoute("InstructorCourseIndex");
+                }
 
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
+                return RedirectToRoute("StudentCourseIndex");
+            }
 
             return View();
         }

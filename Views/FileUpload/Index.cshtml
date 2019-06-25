@@ -1,0 +1,18 @@
+﻿@model HomeroomRedux.ViewModels.Uploads.UploadCourseViewModel
+@{
+    ViewBag.Title = "UploadIndex";
+}
+
+<div class="container">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                @foreach (var file in Model.SubmissionFiles)
+                {
+                    <a href="@file.ExternalUrl">Course File</a>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+

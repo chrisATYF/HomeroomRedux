@@ -1,0 +1,34 @@
+﻿@model HomeroomRedux.Models.Course
+@{
+    ViewBag.Title = "Create";
+}
+
+<div class="container">
+    <div class="container-fluid text-center">
+        <form action="@Url.RouteUrl("CourseCreatePost")" method="post" class="form-group">
+            @Html.AntiForgeryToken()
+            <div class="row">
+                <div class="col-md-6">
+                    @Html.LabelFor(n => n.Name)
+                    @Html.TextBoxFor(n => n.Name, new { @class = "form-control" })
+                </div>
+                <div class="col-md-6">
+                    @Html.LabelFor(d => d.Description)
+                    @Html.TextBoxFor(d => d.Description, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    @Html.LabelFor(a => a.AboutCourse)
+                    @Html.TextAreaFor(a => a.AboutCourse, new { @class = "form-control", @id = "CourseCreateNonResize" })
+                </div>
+                <div class="col-md-6">
+                    @Html.LabelFor(w => w.WhatYouLearn)
+                    @Html.TextAreaFor(w => w.WhatYouLearn, new { @class = "form-control", @id = "CourseCreateNonResize" })
+                </div>
+            </div>
+            <button class="btn btn-primary mt-3" id="courseCard" type="submit">Create</button>
+        </form>
+    </div>
+</div>
+

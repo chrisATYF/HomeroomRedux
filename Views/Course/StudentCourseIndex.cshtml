@@ -1,0 +1,47 @@
+﻿@model HomeroomRedux.ViewModels.Courses.StudentViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="container">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                @TempData["Message"]
+            </div>
+        </div>
+        <h6 class="lead text-center">My Courses</h6>
+        <div class="card-deck mt-3 mb-2 anim-card">
+            @foreach (var course in Model.MyCourses)
+            {
+                <div class="card mt-3" id="courseCard" style="min-width: 15rem; max-width: 15rem;">
+                    <div class="card-body text-center">
+                        <a href="@Url.RouteUrl("StudentDetails", new { id = course.Id })"><h4 class="card-title">@Html.DisplayFor(modelItem => course.Name)</h4></a>
+                        <p class="card-subtitle">Instructor: @Html.DisplayFor(modelItem => course.Instructor.Name)</p>
+                        <hr />
+                        <p class="card-text">@Html.DisplayFor(modelItem => course.Description)</p>
+                        <a href="@Url.RouteUrl("StudentDetails", new { id = course.Id })" class="btn btn-primary">View Course</a>
+                    </div>
+                </div>
+            }
+        </div>
+        <hr />
+        <h6 class="lead text-center">Popular Courses</h6>
+        <div class="card-deck mt-3 mb-2 anim-card">
+            @foreach (var course in Model.PopularCourses)
+            {
+                <div class="card mt-3" id="courseCard" style="min-width: 15rem; max-width: 15rem;">
+                    <div class="card-body text-center">
+                        <a href="@Url.RouteUrl("StudentDetails", new { id = course.Id })"><h4 class="card-title">@Html.DisplayFor(modelItem => course.Name)</h4></a>
+                        <p class="card-subtitle">Instructor: @Html.DisplayFor(modelItem => course.Instructor.Name)</p>
+                        <hr />
+                        <p class="card-text">@Html.DisplayFor(modelItem => course.Description)</p>
+                        <a href="@Url.RouteUrl("StudentDetails", new { id = course.Id })" class="btn btn-primary">View Course</a>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
