@@ -17,7 +17,7 @@ namespace HomeroomRedux.Controllers
             {
                 if (User.IsInRole(Constants.RoleInstructor))
                 {
-                    return RedirectToRoute("InstructorCourseIndex");
+                    return RedirectToRoute("CourseInstructorIndex");
                 }
 
                 return RedirectToRoute("StudentCourseIndex");

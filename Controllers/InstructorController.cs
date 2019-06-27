@@ -36,7 +36,7 @@ namespace HomeroomRedux.Controllers
         {
             await _instructorService.AddAboutAsync(model);
 
-            return RedirectToRoute("InstructorCourseIndex");
+            return RedirectToRoute("CourseInstructorIndex");
         }
     }
 }

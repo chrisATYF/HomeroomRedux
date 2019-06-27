@@ -9,31 +9,30 @@
 
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary" id="courseCard">
-        <a class="navbar-brand" href="@Url.RouteUrl("IndexPage", new { area = "" })">Homeroom</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                @if (User.Identity.IsAuthenticated)
-                {
-                    if (User.IsInRole(Constants.RoleInstructor))
+    @*<nav class="navbar navbar-expand-lg navbar-dark bg-primary" id="courseCard">
+            <a class="navbar-brand" href="@Url.RouteUrl("IndexPage", new { area = "" })">Homeroom</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    @if (User.Identity.IsAuthenticated)
                     {
-                        <li class="nav-item"><a class="nav-link" href="@Url.RouteUrl("InstructorCourseIndex")">Courses</a></li>
+                        if (User.IsInRole(Constants.RoleInstructor))
+                        {
+                            <li class="nav-item"><a class="nav-link" href="@Url.RouteUrl("CourseInstructorIndex")">Courses</a></li>
+                        }
+                        else
+                        {
+                            <li class="nav-item"><a class="nav-link" href="@Url.RouteUrl("StudentCourseIndex")">Courses</a></li>
+                        }
                     }
-                    else
-                    {
-                        <li class="nav-item"><a class="nav-link" href="@Url.RouteUrl("StudentCourseIndex")">Courses</a></li>
-                    }
-                }
-            </ul>
-            @Html.Partial("_LoginPartial")
-        </div>
-    </nav>
-    <div class="container mt-4">
-        @RenderBody()
-        <hr />
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </nav>*@
+    @RenderBody()
+    <div class="btmSect">
         <footer>
             <p>&copy; @DateTime.Now.Year - Homeroom</p>
         </footer>

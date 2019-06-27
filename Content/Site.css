@@ -1,5 +1,39 @@
-﻿body {
-    padding-bottom: 20px;
+﻿body, html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.8em;
+    -webkit-overflow-scrolling: touch;
+}
+
+.pgNav {
+    position: absolute;
+    padding: 20px;
+    border-radius: 10px 10px;
+    color: #363636;
+    background-color: #dedede;
+    opacity: 0.40;
+    margin: 10px auto auto 20px;
+}
+
+.sText {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    color: #000000;
+    text-align: center;
+    font-size: 27px;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+}
+
+.btmSect {
+    padding: 20px;
+    text-align: center;
+    width: 100%;
+    background-color: #dedede;
 }
 
 @keyframes anim-card {

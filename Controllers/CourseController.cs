@@ -1,43 +1,43 @@
 ﻿using HomeroomRedux.Models;
 using HomeroomRedux.Services.Interfaces;
-using HomeroomRedux.ViewModels.Courses;
 using Microsoft.AspNet.Identity;
-using System.Data.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Data.Entity;
+using HomeroomRedux.ViewModels.Courses;
 
 namespace HomeroomRedux.Controllers
 {
     [Authorize]
-    [RoutePrefix("Courses")]
-    public class CoursesController : Controller
+    [RoutePrefix("Course")]
+    public class CourseController : Controller
     {
         protected readonly ICourse _courseService;
         protected readonly ApplicationDbContext _context;
 
-        public CoursesController(ICourse courseService, ApplicationDbContext context)
+        public CourseController(ICourse courseService, ApplicationDbContext context)
         {
             _courseService = courseService;
             _context = context;
         }
 
         [Authorize(Roles = Constants.RoleInstructor)]
-        [Route("instructor", Name = "InstructorCourseIndex")]
-        public async Task<ActionResult> InstructorCourseIndex()
+        [Route("IndexInstructor", Name = "CourseInstructorIndex")]
+        public async Task<ActionResult> IndexInstructor()
         {
             var aspNetUserId = User.Identity.GetUserId();
-            var instructor = await _context.Instructors.Include(c => c.Courses).FirstOrDefaultAsync(i => i.AspNetUserId == aspNetUserId);
+            var model = await _context.Instructors.Include(c => c.Courses).FirstOrDefaultAsync(i => i.AspNetUserId == aspNetUserId);
 
-            return View(instructor);
+            return View(model);
         }
 
         [Authorize(Roles = Constants.RoleStudent)]
-        [Route("student", Name = "StudentCourseIndex")]
-        public async Task<ActionResult> StudentCourseIndex()
+        [Route("StudentIndex", Name = "StudentCourseIndex")]
+        public async Task<ActionResult> StudentIndex()
         {
             var aspNetUserId = User.Identity.GetUserId();
             var courses = await _courseService.GetStudentCoursesByAspNetIdAsync(aspNetUserId);
@@ -136,7 +136,7 @@ namespace HomeroomRedux.Controllers
             var modelToDelete = await _courseService.GetAsync(model.Id);
             await _courseService.DeleteAsync(modelToDelete);
 
-            return RedirectToRoute("InstructorCourseIndex");
+            return RedirectToRoute("CourseInstructorIndex ");
         }
 
         [HttpPost]

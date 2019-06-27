@@ -358,8 +358,7 @@
     <Content Include="Views\Course\Delete.cshtml" />
     <Content Include="Views\Course\Message.cshtml" />
     <Content Include="Views\Course\StudentCourseDetails.cshtml" />
-    <Content Include="Views\Course\StudentCourseIndex.cshtml" />
-    <Content Include="Views\Course\InstructorCourseIndex.cshtml" />
+    <Content Include="Views\Course\StudentIndex.cshtml" />
     <Content Include="Views\Course\InstructorCourseDetails.cshtml" />
     <Content Include="Views\FileUpload\Details.cshtml" />
     <Content Include="Views\FileUpload\Index.cshtml" />
@@ -374,6 +373,7 @@
     <Content Include="Views\Submission\Submit.cshtml" />
     <Content Include="Views\Submission\SubmissionGrade.cshtml" />
     <Content Include="Views\Submission\InstructorSubmissionIndex.cshtml" />
+    <Content Include="Views\Course\IndexInstructor.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
