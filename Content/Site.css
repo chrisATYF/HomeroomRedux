@@ -8,6 +8,10 @@
     -webkit-overflow-scrolling: touch;
 }
 
+html {
+    overflow-x: hidden;
+}
+
 .pgNav {
     position: absolute;
     padding: 20px;
@@ -29,11 +33,34 @@
     text-transform: uppercase;
 }
 
+.lndngSect {
+    background-color: #363636;
+    color: #ffffff;
+    border-radius: 10px 10px;
+    padding: 65px;
+    margin: auto;
+    width: 65%;
+    opacity: 0.90;
+    transform: translate(0, -50%)
+}
+
 .btmSect {
     padding: 20px;
     text-align: center;
     width: 100%;
     background-color: #dedede;
+}
+
+.lndngImg {
+    background-image: url("https://images.pexels.com/photos/289740/pexels-photo-289740.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+    min-height: 100%;
+}
+
+.lndngImg {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    opacity: 0.80;
 }
 
 @keyframes anim-card {

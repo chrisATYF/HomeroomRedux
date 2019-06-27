@@ -9,7 +9,7 @@
 <div class="container">
     <div class="container-fluid">
         @if (Model.Students.Any(a => a.AspNetUserId == User.Identity.GetUserId())
-    && User.IsInRole(Homeroom.Web.Constants.RoleStudent))
+    && User.IsInRole(HomeroomRedux.Constants.RoleStudent))
         {
             <div class="row">
                 <div class="col-md-12 text-center">
@@ -71,7 +71,7 @@
                             @Model.Instructor.AboutInstructor
                         </p>
                         <div class="col-md-12">
-                            @if (User.IsInRole(Homeroom.Web.Constants.RoleStudent))
+                            @if (User.IsInRole(HomeroomRedux.Constants.RoleStudent))
                             {
                                 <form action="@Url.RouteUrl("EnrollPost", new { id = Model.Id })" method="post">
                                     @Html.AntiForgeryToken()
@@ -170,6 +170,5 @@
                 }
             </div>
         }
-
     </div>
 </div>

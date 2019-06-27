@@ -2,19 +2,15 @@
     Layout = "~/Views/Shared/_LayoutNoNav.cshtml";
 }
 
-<div class="container">
-    <div class="container-fluid">
-        <div class="row mt-5 pt-3">
-            <div class="col-lg-12">
-                <div class="jumbotron" id="jumbo">
-                    <h1 class="display-1 text-center">Homeroom</h1>
-                    <p class="lead text-center">A 3-ring binder for the 21st century</p>
-                    <hr class="my-4" />
-                    <div style="text-align:center;">
-                        @Html.ActionLink("Get Started", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "btn btn-lg btn-success" })
-                        @Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "btn btn-lg btn-primary" })
-                    </div>
-                </div>
+<div class="lndngImg">
+    <div class="sText">
+        <div class="lndngSect">
+            <h1>Homeroom</h1>
+            <p>A 3-ring binder for the 21st century</p>
+            <hr class="my-4" />
+            <div style="text-align:center;">
+                @Html.ActionLink("Get Started", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "btn btn-lg btn-outline-info" })
+                @Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "btn btn-lg btn-outline-info" })
             </div>
         </div>
     </div>
