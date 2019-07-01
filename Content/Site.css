@@ -52,7 +52,7 @@ html {
 }
 
 .loginHeading {
-    padding: 15px;
+    padding: 50px 0 20px 30px;
     text-align: center;
     width: 50%;
     font-size: 25px;
@@ -63,20 +63,21 @@ html {
 
 .loginSect {
     color: #363636;
-    padding: 20px;
+    padding: 10px 0 10px 0;
     background-color: #dedede;
     border-radius: 10px 10px;
     width: 50%;
-    margin-left: 20px;
+    margin-left: 30px;
+    opacity: 0.95;
 }
 
 .loginBtn {
-    margin-left: 20px;
+    margin-left: 30px;
     padding: 10px;
 }
 
 input {
-    max-width: 445px;
+    max-width: 500px;
 }
 
 .lndngImg {
