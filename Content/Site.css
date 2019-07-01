@@ -58,17 +58,15 @@ html {
     font-size: 25px;
     letter-spacing: 4px;
     text-transform: uppercase;
-    color: #dedede;
+    color: #5bc0de;
 }
 
 .loginSect {
-    color: #363636;
+    color: #5bc0de;
     padding: 10px 0 10px 0;
-    background-color: #dedede;
     border-radius: 10px 10px;
     width: 50%;
     margin-left: 30px;
-    opacity: 0.95;
 }
 
 .loginBtn {
@@ -81,12 +79,12 @@ input {
 }
 
 .lndngImg {
-    background-image: url("https://images.pexels.com/photos/289740/pexels-photo-289740.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+    background-image: url("https://images.pexels.com/photos/373488/pexels-photo-373488.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500");
     min-height: 100%;
 }
 
 .logImg {
-    background-image: url('https://images.pexels.com/photos/207691/pexels-photo-207691.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
+    background-image: url('https://images.pexels.com/photos/247839/pexels-photo-247839.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
     min-height: 100%;
 }
 
