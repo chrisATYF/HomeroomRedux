@@ -9,6 +9,12 @@
 </head>
 <body>
     @RenderBody()
+    <div class="btmSect">
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Homeroom</p>
+        </footer>
+    </div>
+
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)

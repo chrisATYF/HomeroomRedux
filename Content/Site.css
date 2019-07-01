@@ -45,10 +45,38 @@ html {
 }
 
 .btmSect {
-    padding: 20px;
+    padding: 10px;
     text-align: center;
     width: 100%;
+    color: #363636;
+}
+
+.loginHeading {
+    padding: 15px;
+    text-align: center;
+    width: 50%;
+    font-size: 25px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #dedede;
+}
+
+.loginSect {
+    color: #363636;
+    padding: 20px;
     background-color: #dedede;
+    border-radius: 10px 10px;
+    width: 50%;
+    margin-left: 20px;
+}
+
+.loginBtn {
+    margin-left: 20px;
+    padding: 10px;
+}
+
+input {
+    max-width: 445px;
 }
 
 .lndngImg {
@@ -56,7 +84,12 @@ html {
     min-height: 100%;
 }
 
-.lndngImg {
+.logImg {
+    background-image: url('https://images.pexels.com/photos/207691/pexels-photo-207691.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
+    min-height: 100%;
+}
+
+.lndngImg, .logImg {
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
