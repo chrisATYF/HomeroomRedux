@@ -199,3 +199,15 @@ input {
     margin: auto;
     box-shadow: 0 4px 8px 0 rgba(29,58,81,0.2), 0 6px 20px 0 rgba(29,58,81,0.2);
 }
+
+@media (max-width: 537px) {
+    body {
+        overflow-x: hidden;
+    }
+
+    .lndngImg, .logImg {
+        font-size: 17px;
+        letter-spacing: 3px;
+        background-attachment: scroll;
+    }
+}
