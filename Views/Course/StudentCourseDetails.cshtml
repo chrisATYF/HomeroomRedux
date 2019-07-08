@@ -152,10 +152,10 @@
             <div class="card-deck mt-3 text-center mb-2">
                 @foreach (var assignment in Model.Assignments)
                 {
-                    foreach (var submission in assignment.Submissions)
+                    foreach (var submission in assignment.Submissions.Where(i => i.IsGraded).OrderByDescending(i => i.GradedDate).Take(3))
                     {
-                        if (submission.IsGraded)
-                        {
+                        //if (submission.IsGraded)
+                        //{
                             <div class="card mt-3" id="courseIndexCenter" style="min-width: 15rem; max-width: 15rem;">
                                 <div class="card-body text-center">
                                     <h4 class="card-title">@assignment.Name</h4>
@@ -165,7 +165,7 @@
                                     <p class="card-text">@submission.GradedDateHumanized</p>
                                 </div>
                             </div>
-                        }
+                        //}
                     }
                 }
             </div>

@@ -8,6 +8,11 @@
     <div class="container-fluid">
         @if (!Model.Courses.Any())
         {
+            <div class="row">
+                <div class="col-md-12">
+                    <a href="@Url.RouteUrl("AboutInstructorGet", new { instructorId = Model.Id })" class="btn btn-success mb-2" id="courseCard">Edit about you</a>
+                </div>
+            </div>
             <p class="text-muted">It doesn't look like you have any courses, <a href="@Url.RouteUrl("CourseCreate")">create one now</a></p>
         }
         else

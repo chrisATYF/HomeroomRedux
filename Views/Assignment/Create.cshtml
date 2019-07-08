@@ -10,7 +10,7 @@
                 <h5 class="text-center">Add an Assignment</h5>
             </div>
         </div>
-        <form action="@Url.RouteUrl("AddAssignmentPost")" method="post">
+        <form action="@Url.RouteUrl("CreateAssignmentPost")" method="post">
             @Html.AntiForgeryToken()
             @Html.HiddenFor(c => c.CourseId)
             <div class="row">
@@ -53,4 +53,3 @@
         </form>
     </div>
 </div>
-

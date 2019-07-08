@@ -40,14 +40,14 @@ namespace HomeroomRedux.Models
             return model;
         }
 
-        public Submission SetSubGrade(Submission model)
+        public Submission SetSubGrade(Submission modelToUpdate, Submission updatedModel)
         {
-            model.Grade = model.Grade;
-            model.LetterGrade = model.LetterGrade;
-            model.GradedDate = DateTime.UtcNow;
-            model.IsGraded = true;
+            modelToUpdate.Grade = updatedModel.Grade;
+            modelToUpdate.LetterGrade = updatedModel.LetterGrade;
+            modelToUpdate.GradedDate = DateTime.UtcNow;
+            modelToUpdate.IsGraded = true;
 
-            return model;
+            return updatedModel;
         }
     }
 }

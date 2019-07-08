@@ -1,5 +1,6 @@
 namespace HomeroomRedux.Migrations
 {
+    using HomeroomRedux.Models;
     using Microsoft.AspNet.Identity.EntityFramework;
     using System;
     using System.Data.Entity;
@@ -13,7 +14,7 @@ namespace HomeroomRedux.Migrations
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(HomeroomRedux.Models.ApplicationDbContext context)
+        protected override void Seed(ApplicationDbContext context)
         {
             //  This method will be called after migrating to the latest version.
 

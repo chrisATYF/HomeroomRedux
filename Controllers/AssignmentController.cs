@@ -10,12 +10,12 @@ using System.Web.Mvc;
 namespace HomeroomRedux.Controllers
 {
     [Authorize]
-    [RoutePrefix("Assignments")]
-    public class AssignmentsController : Controller
+    [RoutePrefix("Assignment")]
+    public class AssignmentController : Controller
     {
         protected readonly IAssignment _assignmentService;
 
-        public AssignmentsController(IAssignment assignmentService)
+        public AssignmentController(IAssignment assignmentService)
         {
             _assignmentService = assignmentService;
         }
@@ -28,8 +28,8 @@ namespace HomeroomRedux.Controllers
             return View(model);
         }
 
-        [Route("Add/{courseId}", Name = "AddAssignment")]
-        public ActionResult Add(int courseId)
+        [Route("Create/{courseId}", Name = "CreateAssignment")]
+        public ActionResult Create(int courseId)
         {
             var model = new Assignment
             {
@@ -41,8 +41,8 @@ namespace HomeroomRedux.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Route("Add/{id}", Name = "AddAssignmentPost")]
-        public async Task<ActionResult> Add(Assignment assignmentModel)
+        [Route("Create/{id}", Name = "CreateAssignmentPost")]
+        public async Task<ActionResult> Create(Assignment assignmentModel)
         {
             await _assignmentService.AddAsync(assignmentModel);
 

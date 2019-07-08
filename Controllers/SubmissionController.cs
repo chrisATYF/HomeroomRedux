@@ -12,13 +12,13 @@ using System.Web.Mvc;
 namespace HomeroomRedux.Controllers
 {
     [Authorize]
-    [RoutePrefix("Submissions")]
-    public class SubmissionsController : Controller
+    [RoutePrefix("Submission")]
+    public class SubmissionController : Controller
     {
         protected readonly ISubmissions _submissionService;
         protected readonly ApplicationDbContext _context;
 
-        public SubmissionsController(ISubmissions submissionService, ApplicationDbContext context)
+        public SubmissionController(ISubmissions submissionService, ApplicationDbContext context)
         {
             _submissionService = submissionService;
             _context = context;
@@ -110,7 +110,7 @@ namespace HomeroomRedux.Controllers
         public async Task<ActionResult> SubmissionGrade(Submission model)
         {
             var modelToGrade = await _submissionService.GetSubmissionAsync(model.Id);
-            modelToGrade = model.SetSubGrade(modelToGrade);
+            modelToGrade.SetSubGrade(modelToGrade, model);
             await _context.SaveChangesAsync();
 
             return RedirectToRoute("InstructorSubIndex", new { assignmentId = modelToGrade.AssignmentId });

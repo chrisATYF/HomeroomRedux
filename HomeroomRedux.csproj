@@ -349,7 +349,6 @@
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Shared\_LayoutNoNav.cshtml" />
     <Content Include="Views\Assignment\Index.cshtml" />
-    <Content Include="Views\Assignment\Add.cshtml" />
     <Content Include="Views\Assignment\Details.cshtml" />
     <Content Include="Views\Assignment\Delete.cshtml" />
     <Content Include="Views\Assignment\Edit.cshtml" />
@@ -374,6 +373,8 @@
     <Content Include="Views\Submission\SubmissionGrade.cshtml" />
     <Content Include="Views\Submission\InstructorSubmissionIndex.cshtml" />
     <Content Include="Views\Course\IndexInstructor.cshtml" />
+    <Content Include="Views\Assignment\Create.cshtml" />
+    <Content Include="Views\FileUpload\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

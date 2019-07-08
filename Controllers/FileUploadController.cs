@@ -15,12 +15,12 @@ namespace HomeroomRedux.Controllers
 {
     [Authorize]
     [RoutePrefix("FileUpload")]
-    public class FileUploadsController : Controller
+    public class FileUploadController : Controller
     {
         protected readonly IUpload _uploadService;
         protected readonly ApplicationDbContext _context;
 
-        public FileUploadsController(IUpload uploadService, ApplicationDbContext context)
+        public FileUploadController(IUpload uploadService, ApplicationDbContext context)
         {
             _uploadService = uploadService;
             _context = context;
@@ -97,6 +97,20 @@ namespace HomeroomRedux.Controllers
             var model = await _uploadService.GetAsync(uploadFileId);
 
             return View(model);
+        }
+
+        [Route("Delete/{uploadFileId}", Name = "FileDelete")]
+        public ActionResult Delete()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Route("Delete", Name = "FileDeletePost")]
+        public async Task<ActionResult> Delete(SubmissionFile model)
+        {
+            return RedirectToRoute("UploadIndex");
         }
     }
 }
